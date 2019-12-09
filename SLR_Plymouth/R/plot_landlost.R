@@ -1,6 +1,7 @@
 library(dplyr)
 library(parallel)
 library(ggplot2)
+source("/home/z/Desktop/github /minor_projects/SLR_Plymouth/R/plot.save.R")
 
 #-------------------------------------- Data prep ------------------------------------------
 
@@ -48,4 +49,7 @@ p <- ggplot(landlost) +
                      values = c("2.6"="blue", "4.5"="purple", "8.5"="red")) +
   theme_bw() +
   theme(legend.position = "bottom")
+
+plot.save(plot = p, width = 800, height = 600, filename = "landlost.png", 
+          path = "/home/z/Desktop/github /minor_projects/SLR_Plymouth/visualisations/")
   
