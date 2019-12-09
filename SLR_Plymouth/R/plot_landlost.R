@@ -4,28 +4,30 @@ library(ggplot2)
 
 #-------------------------------------- Data prep ------------------------------------------
 
-find.landlost <- function(file, path) {
+quantify.landlost <- function(file, path) {
+  
   data <- readRDS(file = paste0(path, file))
   slr  <- data %>% filter(col == "Land lost to SLR")
   num  <- (length(slr$col)*25)/1000000
+  
   return(num)
 }
 
 ncores <- detectCores()
 
 rcp2.6 <- mclapply(list.files(path = "~/Desktop/slr-files/rcp2.6/data/", pattern = ".rds"),
-                   find.landlost, 
+                   quantify.landlost, 
                    path = "~/Desktop/slr-files/rcp2.6/data/", 
                    mc.cores = ncores - 1
                    )
 rcp4.5 <- mclapply(list.files(path = "~/Desktop/slr-files/rcp4.5/data/", pattern = ".rds"),
-                   find.landlost, 
+                   quantify.landlost, 
                    path = "~/Desktop/slr-files/rcp4.5/data/", 
                    mc.cores = ncores - 1
                    )
 
 rcp8.5 <- mclapply(list.files(path = "~/Desktop/slr-files/rcp8.5/data/", pattern = ".rds"),
-                   find.landlost, 
+                   quantify.landlost, 
                    path = "~/Desktop/slr-files/rcp8.5/data/", 
                    mc.cores = ncores - 1
                    )
