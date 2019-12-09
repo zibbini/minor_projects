@@ -39,7 +39,6 @@ make.plot <- function(inpath, file, outpath) {
   plot.save(plot = p, 
             width = 875, 
             height = 656, 
-            text_factor = 1, 
             path = outpath,
             filename = paste0(gsub(pattern = ".rds", replacement = "", file), ".png"))
   
