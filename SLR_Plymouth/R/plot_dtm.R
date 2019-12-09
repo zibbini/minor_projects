@@ -12,16 +12,6 @@ roads <- fortify(roads)
 
 #--------------------------------- Plotting functions -----------------------------------
 
-# Wrapper function for ggsave
-plot.save <- function(plot, width, height, text_factor, filename, path) {
-  
-  dpi    <- text_factor * 100
-  resw   <- width/dpi
-  resh   <- height/dpi
-  
-  ggsave(filename = filename, dpi = dpi, width = resw, height = resh, units = 'in', plot = plot, path = path)
-}
-
 make.plot <- function(inpath, file, outpath) {
   
   data     <- readRDS(file = paste0(inpath, file))
