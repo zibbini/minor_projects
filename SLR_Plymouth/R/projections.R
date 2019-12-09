@@ -81,12 +81,12 @@ p <- ggplot() +
   theme_bw() +
   theme(legend.position = "bottom")
 
-grid.arrange(
+p_all <- grid.arrange(
   arrangeGrob(p,
               arrangeGrob(high, medium, low, nrow = 3),
               ncol = 2, widths = c(2,1.5)
+              )
   )
-)
 
-ggsave(filename = "summaryplot.png", plot = last_plot(), 
-       path = "/home/z/Desktop/R-projects/GIS-work/minor-projects/ME_SLR/Visualisations")
+ggsave(filename = "summaryplot.png", plot = p_all, 
+       path = "/home/z/Desktop/github /minor_projects/SLR_Plymouth/visualisations/")
