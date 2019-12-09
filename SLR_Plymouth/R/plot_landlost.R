@@ -43,7 +43,8 @@ p <- ggplot(landlost) +
   geom_line(aes(x = year, y = rcp2.6, color = "2.6")) +
   geom_line(aes(x = year, y = rcp4.5, color = "4.5")) +
   geom_line(aes(x = year, y = rcp8.5, color = "8.5")) +
-  labs(x = "Date (Yr)",
+  labs(title = "Land flooded due to projected sea level rise in Plymouth (2019-2300)",
+       x = "Date (Yr)",
        y = bquote("Mean area of land flooded"~(km^2))) +
   scale_color_manual(name = "RCP model:", 
                      values = c("2.6"="blue", "4.5"="purple", "8.5"="red")) +
