@@ -1,1 +1,1 @@
-# minor_projects
+A collection of smaller projects
