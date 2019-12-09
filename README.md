@@ -1,1 +1,1 @@
-A collection of smaller projects
+Repository for smaller projects.
