@@ -1,6 +1,7 @@
 library(ggplot2)
 library(lubridate)
 library(gridExtra)
+source("/home/z/Desktop/github /minor_projects/SLR_Plymouth/R/plot.save.R")
 
 setwd("/home/z/Desktop/R-projects/GIS-work/minor-projects/ME_SLR/Data/projections")
 
@@ -88,5 +89,5 @@ p_all <- grid.arrange(
               )
   )
 
-ggsave(filename = "summaryplot.png", plot = p_all, 
-       path = "/home/z/Desktop/github /minor_projects/SLR_Plymouth/visualisations/")
+plot.save(p_all, filename = "summaryplot.png", width = 1000, height = 600,
+          path = "/home/z/Desktop/github /minor_projects/SLR_Plymouth/visualisations/")
