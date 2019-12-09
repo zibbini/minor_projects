@@ -47,4 +47,3 @@ p <- ggplot(landlost) +
   theme_bw() +
   theme(legend.position = "bottom")
   
-

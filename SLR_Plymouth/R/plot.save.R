@@ -1,6 +1,6 @@
 plot.save <- function(plot, width, height, filename, path) {
   
-  #' Save a ggplot object using resolution
+  #' Save a ggplot object by resolution
   #' 
   #' @description This wrapper function allows you to specify the resolution of a plot to be saved, rather than
   #' dimensions in standard units (e.g. cm). 
