@@ -73,7 +73,7 @@ p <- ggplot() +
   geom_line(data = rcp2.6, aes(Date, `50`, color = "2.6")) +
   geom_line(data = rcp4.5, aes(Date, `50`, color = "4.5")) +
   geom_line(data = rcp8.5, aes(Date, `50`, color = "8.5")) +
-  labs(title = "Mean projected SLR for Plymouth (2007-2300)",
+  labs(title = "Mean projected SLR for Plymouth (2019-2300)",
        x = "Date (Yr)",
        y = "Mean projected SLR (m)") +
   scale_color_manual(name = "RCP model:", 
