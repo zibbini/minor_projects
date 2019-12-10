@@ -1,7 +1,7 @@
 library(shiny)
 library(leaflet)
+library(rgdal)
 library(raster)
-library(sp)
 
 plymCRS <- "+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.999601 +x_0=400000 +y_0=-100000 +ellps=airy +towgs84=446.448, 
            -125.157,542.060,0.1502,0.2470,0.8421,-20.4894 +units=m +no_defs"
@@ -20,7 +20,7 @@ ui <- fluidPage(
                     value = 2019, 
                     step = 1, 
                     sep = ""),
-        ),
+    ),
     mainPanel(
         leafletOutput(outputId = "map")
     )
@@ -37,7 +37,7 @@ server <- function(input, output){
             leaflet() %>%
                 addTiles() %>%
                 addRasterImage(layer(), colors = "red", opacity = 0.8)
-            })
+        })
     })
 }
 
