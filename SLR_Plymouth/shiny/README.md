@@ -7,7 +7,7 @@ Please note that data used in the [live version](https://z-lab.shinyapps.io/slrv
 If you would like to use the dashboard to explore non-resampled data, you can do so by using the dashboard locally in your own R session. After cloning this repository and unpacking the archives contained in `./Data/`, you can launch the dashboard using the following:
 
 ``` r
-shiny::runApp("path/to/minor-projects/SLR_vis/shiny/app.R")
+shiny::runApp("path/to/minor_projects/slr_plymouth/shiny/app.R")
 ```
 
 Please note this dashboard is dependent on several packages: `shiny`, `leaflet`, `raster` and `rgdal`. If you do not have these packages installed, you can install them using the following:
