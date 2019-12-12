@@ -2,5 +2,5 @@
 
 cd path/to/files
 
-# Compress to archive
+# Compress to archive - requires lrzip
 lrztar foldername
