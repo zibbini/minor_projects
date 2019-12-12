@@ -3,14 +3,17 @@ library(ggplot2)
 library(ggpmisc)
 library(lubridate)
 library(plyr)
+library(gridExtra)
+source("/home/z/Desktop/github /minor_projects/SLR_Plymouth/R/plot.save.R")
 
-setwd("/run/media/z/Z/R-projects/GIS-work/minor-projects/F. exsecta analysis/Data")
+setwd("~/Desktop/R-projects/GIS-work/minor-projects/F.exsecta_analysis/Data")
 
 #--------------------------------- Data prep ------------------------------------
 
 NestD <- read.csv("nest_distance.csv", header = TRUE)
 dfall <- read.csv("data-all.csv", header = TRUE)
 
+#Filter and format 
 NestD <- subset(NestD, Distance <= 5, ) #5 is the max range of F. exsecta territories according to the literature
 NestD <- na.omit(NestD)
 NestD <- NestD %>% mutate_at(c("InputID", "TargetID"), as.numeric) 
@@ -54,59 +57,77 @@ NestD          <- NestD[!duplicated(NestD), ]
 #--------------------------------- Analysis ---------------------------------------
 
 #Summary graphs
-ggplot(dfall, aes(x = diameter)) +
+p1 <- ggplot(dfall, aes(x = diameter)) +
   geom_density(aes(y = ..count..), fill = "grey50") +
   theme_bw() +
   xlab("Nest diameter (cm)") + 
-  ylab("Frequency")
+  ylab("Frequency") +
+  labs(title = "", subtitle = "(a)")
 
-ggplot(dfall, aes(x = mintime)) +
+p2 <- ggplot(dfall, aes(x = mintime)) +
   geom_density(aes(y = ..count..), fill = "grey50") +
   theme_bw() +
   xlab("First recorded brood") + 
-  ylab("Frequency")
+  ylab("Frequency") +
+  labs(title = "", subtitle = "(b)")
 
-ggplot(dfall, aes(x = maxtime)) +
-  geom_density(aes(y = ..count..), fill = "grey50") +
-  theme_bw() +
-  xlab("Last recorded brood") + 
-  ylab("Frequency")
-
-ggplot(dfall, aes(x = difftime)) +
+p3 <- ggplot(dfall, aes(x = difftime)) +
   geom_density(aes(y = ..count..), fill = "grey50") +
   theme_bw() +
   xlab("No. of days nest(s) were producing brood") + 
-  ylab("Frequency")
+  ylab("Frequency") +
+  labs(title = "", subtitle = "(c)")
 
-# Normality tests for cor tests
+p4 <- ggplot(dfall, aes(x = maxtime)) +
+  geom_density(aes(y = ..count..), fill = "grey50") +
+  theme_bw() +
+  xlab("Last recorded brood") + 
+  ylab("Frequency") +
+  labs(title = "", subtitle = "(d)")
+
+pall <- grid.arrange(p1, p2, p3, p4, ncol = 2, nrow = 2)
+
+plot.save(pall, width = 713, height = 630, 
+          filename = "dist_plots.png", path = "/home/z/Desktop/github /minor_projects/F.exsecta_analysis/Visualisations/")
+
+#Normality tests for cor tests
 shapiro.test(dfall$diameter)
 shapiro.test(dfall$difftime)
 shapiro.test(NestD$Distance)
 shapiro.test(NestD$difftime)
 shapiro.test(NestD$diameter)
 
-cor.test(dfall$diameter, dfall$difftime, method = "pearson") # significant: weak +
-cor.test(NestD$Distance, NestD$difftime, method = "pearson") # non-significant
-cor.test(NestD$Distance, NestD$diameter, method = "pearson") # significant: weak -
+cor.test(dfall$diameter, dfall$difftime, method = "pearson") #significant: weak +
+cor.test(NestD$Distance, NestD$difftime, method = "pearson") #non-significant
+cor.test(NestD$Distance, NestD$diameter, method = "pearson") #significant: weak -
 
-# Plots for above correlation tests
-ggplot(dfall, aes(x = diameter, y = difftime)) + 
+#Plots for above correlation tests
+p5 <- ggplot(dfall, aes(x = diameter, y = difftime)) + 
   geom_point() +
-  geom_smooth(method = lm,formula = y~x, colour = "red") +
   theme_bw() +
   xlab("Nest diameter (cm)") +
-  ylab("Time nest(s) produced brood (days)") 
-
-ggplot(NestD, aes(x = Distance, y = difftime)) +
-  geom_point() +
-  geom_smooth(method = lm,formula = y~x, colour = "red") +
-  theme_bw() +
-  xlab("Distance between nests (m)") +
   ylab("Recorded time nest(s) produced brood (days)") 
 
-ggplot(NestD, aes(x = Distance, y = diameter)) +
+p6 <- ggplot(NestD, aes(x = Distance, y = difftime)) +
   geom_point() +
-  geom_smooth(method = lm,formula = y~x, colour = "red") +
   theme_bw() +
   xlab("Distance between nests (m)") +
-  ylab("Nest diameter (cm)") 
+  ylab("Recorded time nest(s) produced brood (days)") +
+  labs(title = "", subtitle = "(a)")
+
+p7 <- ggplot(NestD, aes(x = Distance, y = diameter)) +
+  geom_point() +
+  theme_bw() +
+  xlab("Distance between nests (m)") +
+  ylab("Nest diameter (cm)") +
+  labs(title = "", subtitle = "(b)")
+
+pall2 <- grid.arrange(p6, p7, ncol = 2, nrow = 1)
+
+plot.save(pall2, width = 850, height = 500, filename = "nestdist_plots.png", 
+          path = "/home/z/Desktop/github /minor_projects/F.exsecta_analysis/Visualisations/")
+
+plot.save(p5, width = 624, height = 487, filename = "nestdiam_plot.png", 
+          path = "/home/z/Desktop/github /minor_projects/F.exsecta_analysis/Visualisations/")
+
+
