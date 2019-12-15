@@ -3,7 +3,7 @@ library(leaflet)
 library(rgdal)
 library(raster)
 
-plymCRS <- "+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.999601 +x_0=400000 +y_0=-100000 +ellps=airy +towgs84=446.448, 
+ukCRS <- "+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.999601 +x_0=400000 +y_0=-100000 +ellps=airy +towgs84=446.448, 
            -125.157,542.060,0.1502,0.2470,0.8421,-20.4894 +units=m +no_defs"
 url_met <- a("here.", 
              href = "https://www.metoffice.gov.uk/binaries/content/assets/metofficegovuk/pdf/research/ukcp/ukcp18-guidance---representative-concentration-pathways.pdf", 
@@ -41,7 +41,7 @@ ui <- fluidPage(
 server <- function(input, output){
     
     layer <- reactive({
-        raster(paste0("./Data/", paste0("rcp", input$model, "/"), input$slider, ".tif"), crs = plymCRS)
+        raster(paste0("./Data/", paste0("rcp", input$model, "/"), input$slider, ".tif"), crs = ukCRS)
     })
     
     output$map <- renderLeaflet({

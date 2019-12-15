@@ -129,5 +129,3 @@ plot.save(pall2, width = 850, height = 500, filename = "nestdist_plots.png",
 
 plot.save(p5, width = 624, height = 487, filename = "nestdiam_plot.png", 
           path = "/home/z/Desktop/github /minor_projects/F.exsecta_analysis/Visualisations/")
-
-
