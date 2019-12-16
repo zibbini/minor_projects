@@ -2,6 +2,7 @@ library(rgdal)
 library(ggplot2)
 library(proj4)
 library(RColorBrewer)
+library(ggsn)
 
 setwd("/run/media/z/Z/Linux files/Desktop/GIS-work/Project_2/Data/")
 
