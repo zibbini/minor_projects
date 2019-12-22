@@ -4,7 +4,6 @@ library(rgdal)
 library(parallel)
 library(doParallel)
 library(foreach)
-# Remember to edit out paths
 source("~/Desktop/github /minor_projects/ancient_woodland/R/fun/rescale.R")
 source("~/Desktop/github /minor_projects/ancient_woodland/R/fun/validate.R")
 source("~/Desktop/github /minor_projects/ancient_woodland/R/fun/plot.dist.R")
