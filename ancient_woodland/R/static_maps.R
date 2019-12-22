@@ -71,12 +71,12 @@ p <- ggplot() +
     order = 1)
     )
 
-plot.save(plot = p, width = 740, height - 720, 
+plot.save(plot = p, width = 740, height = 720, 
           filename = "hexbin.png",
-          path = "")
+          path = "~/Desktop/github /minor_projects/ancient_woodland/visualisations/")
 
 # Kernel density and isocontours ----------------------------------------------------------
-ggplot(df_latlon) +
+p1 <- ggplot(df_latlon) +
   
   geom_polygon(data = map.df, aes(x = long, y = lat, group = group, linetype = "City districts"),
                fill = "grey60", colour = "grey70") + 
@@ -103,3 +103,7 @@ ggplot(df_latlon) +
     title = "Legend",
     order = 1)
   )
+
+plot.save(plot = p1, width = 740, height = 720, 
+          filename = "kdensity.png",
+          path = "~/Desktop/github /minor_projects/ancient_woodland/visualisations/")
