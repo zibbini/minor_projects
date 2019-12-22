@@ -62,7 +62,8 @@ ggplot() +
            box.fill = c("black", "#FDFAE1"), location = "bottomright", st.size = 3) +
   
   theme_z_maps() +
-  labs(title = "Distribution of Ancient woodland in England") +
+  labs(title = "Distribution of Ancient woodland in England", 
+       caption = "Data sourced from Natural England UK.") +
   guides(linetype = guide_legend(
     title.theme = element_text(
       size = 12),
@@ -91,7 +92,8 @@ ggplot(df_latlon) +
   coord_fixed() +
   theme_z_maps() +
   xlim(-6, 2) + ylim(49.5, 56) +
-  labs(title = "Distribution of Ancient woodland in England") +
+  labs(title = "Distribution of Ancient woodland in England",
+       caption = "Data sourced from Natural England UK.") +
   guides(linetype = guide_legend(
     title.theme = element_text(
       size = 12),
