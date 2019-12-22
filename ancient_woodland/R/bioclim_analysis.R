@@ -5,11 +5,11 @@ library(parallel)
 library(doParallel)
 library(foreach)
 # Remember to edit out paths
-source("/home/z/Desktop/github /minor_projects/ancient_woodland/R/fun/rescale.R")
-source("/home/z/Desktop/github /minor_projects/ancient_woodland/R/fun/validate.R")
-source("/home/z/Desktop/github /minor_projects/ancient_woodland/R/fun/plot.dist.R")
-source("/home/z/Desktop/github /minor_projects/ancient_woodland/R/fun/plot.save.R")
-source("/home/z/Desktop/github /minor_projects/ancient_woodland/R/fun/plot.maps.R")
+source("~/Desktop/github /minor_projects/ancient_woodland/R/fun/rescale.R")
+source("~/Desktop/github /minor_projects/ancient_woodland/R/fun/validate.R")
+source("~/Desktop/github /minor_projects/ancient_woodland/R/fun/plot.dist.R")
+source("~/Desktop/github /minor_projects/ancient_woodland/R/fun/plot.save.R")
+source("~/Desktop/github /minor_projects/ancient_woodland/R/fun/plot.maps.R")
 
 # ------------------------------------- Prep point data -------------------------------------
 values       <- read.csv(file = "~/Desktop/R-projects/GIS-work/Project_2/Data/temp_coords.csv", h = T)
@@ -74,7 +74,7 @@ foreach (i = rds_with_labels[,1]) %dopar% {
   
   plot.save(plot = p, width = 740, height = 720, 
             filename = gsub("-eng.rds", ".png", i), 
-            path = "/home/z/Desktop/worldclim/maps/")
+            path = "~/Desktop/worldclim/maps/")
 }
 
 stopCluster(cl) 
@@ -121,7 +121,7 @@ foreach (i = tif_with_labels[,1]) %dopar% {
   
   plot.save(plot = pd, width = 500, height = 500,
             filename = gsub("-eng.tif", ".png", i), 
-            path = "/home/z/Desktop/worldclim/dist_plots/")
+            path = "~/Desktop/worldclim/dist_plots/")
 }
 
 stopCluster(cl)
@@ -132,7 +132,7 @@ avg_score <- validate(points = sp, data = xy, column = "z", threshold = 0.1, out
 avg_area  <- validate(points = sp, data = xy, column = "z", threshold = 0.1, output = "polygons")
 
 england <- readOGR(
-  dsn = "/home/z/Desktop/worldclim/", 
+  dsn = "~/Desktop/worldclim/", 
   layer = "england"
 )
 
