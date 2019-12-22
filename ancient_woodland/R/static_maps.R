@@ -32,11 +32,6 @@ map.df            <- fortify(shp)
 theme_z_maps <- function(...) {
   theme_void() +
     theme(
-      
-      plot.background = element_rect(fill = "#FFF6E3",
-                                     color = "#FFF6E3"),
-      panel.background = element_rect(fill = "#FFF6E3",
-                                      color = "#FFF6E3"),
       legend.background = element_blank(),
       
       legend.title = element_text(size = 10),
