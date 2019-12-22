@@ -3,6 +3,7 @@ library(ggplot2)
 library(proj4)
 library(RColorBrewer)
 library(ggsn)
+source("~/Desktop/github /minor_projects/ancient_woodland/R/fun/plot.save.R")
 
 setwd("~/Desktop/R-projects/GIS-work/Project_2/Data/")
 
@@ -13,11 +14,11 @@ df <- subset(df, select = c("X_COORD", "Y_COORD"))
 
 #Transform coordinate data to the same CRS as shp layer
 proj4string <- '+init=epsg:27700 +proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +units=m +no_defs'
-pj <- project(df, proj4string, inverse=TRUE)
-df_latlon <- data.frame(lat=pj$y, long=pj$x)
+pj          <- proj4::project(df, proj4string, inverse = TRUE)
+df_latlon   <- data.frame(lat=pj$y, long=pj$x)
 
 shp <- readOGR(
-  dsn = "/run/media/z/Z/Linux files/Desktop/GIS-work/Project_2/Data/",
+  dsn = "~/Desktop/R-projects/GIS-work/Project_2/Data/",
   layer = "site_count_districts"
 )
 
