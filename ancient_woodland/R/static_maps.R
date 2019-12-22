@@ -45,7 +45,7 @@ theme_z_maps <- function(...) {
 #--------------------------------- Static plots ---------------------------------------
 
 # Hexbin plot -------------------------------------------------------------------------
-ggplot() +  
+p <- ggplot() +  
   
   geom_polygon(data = map.df, aes(x = long, y = lat, group = group, linetype = "City districts"),
                fill = "grey60", colour = "grey45") +  
@@ -70,7 +70,10 @@ ggplot() +
     title = "Legend",
     order = 1)
     )
-    
+
+plot.save(plot = p, width = 740, height - 720, 
+          filename = "hexbin.png",
+          path = "")
 
 # Kernel density and isocontours ----------------------------------------------------------
 ggplot(df_latlon) +
