@@ -73,7 +73,7 @@ foreach (i = rds_with_labels[,1]) %dopar% {
   
   plot.save(plot = p, width = 740, height = 720, 
             filename = gsub("-eng.rds", ".png", i), 
-            path = "~/Desktop/worldclim/maps/")
+            path = "~/Desktop/worldclim/maps")
 }
 
 stopCluster(cl) 
