@@ -26,7 +26,7 @@ plot.maps <- function(data, fill, title, subtitle, caption) {
     labs(title = title, 
          subtitle = subtitle,
          caption = caption) +
-    guides(fill = guide_colorbar(title = "Mean proximity index")) +
+    guides(fill = guide_colorbar(title = "Deviation index")) +
     north(x.min = min(data$x), x.max = max(data$x), 
           y.min = min(data$y), y.max = max(data$y),
           location = "topright", symbol = 10, scale = 0.1) +

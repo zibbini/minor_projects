@@ -3,7 +3,7 @@ rescale.mean <- function(points, layer, export = FALSE, filename) {
   #' Rescale raster to mean of presence points
   #' 
   #' @description This function extracts values from a raster object at the location of chosen point data. 
-  #' A proxy index is then produced based on distance to the mean of the extracted values. 
+  #' An index is then produced based on distance to the mean of the extracted values. 
   #' 
   #' @usage rescale.mean(points, layer, export = FALSE)
   #' 
@@ -15,12 +15,12 @@ rescale.mean <- function(points, layer, export = FALSE, filename) {
   #' @param filename Name of file to write to disk if export = TRUE.
   #' 
   #' @return If export is FALSE, a rescaled layer in dataframe format is returned. The x, y and z coordinates of
-  #' the original raster will be returned as well as the proxy index. 
+  #' the original raster will be returned as well as the index. 
   #' 
-  #' @details The proxy index has a range of 0 - 1, where 0 is furthest from the mean and 1 is a value 
+  #' @details The index has a range of 0 - 1, where 0 is furthest from the mean and 1 is a value 
   #' identical to the mean. Note that because the index is derived from the mean, the distribution of your point 
   #' data across the z component of the raster layer should ideally be normal. A non-normal distribution 
-  #' may not produce a useful result. Nonetheless, you can test the accuracy of a proxy index using validate().
+  #' may not produce a useful result. Nonetheless, you can test the accuracy of a index using validate().
   
   data  <- data.frame(raster::rasterToPoints(layer))
   
