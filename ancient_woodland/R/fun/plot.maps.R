@@ -1,5 +1,5 @@
 # Description:
-# Theme and helper functions for plotting rescaled layers as maps. 
+# Helper functions for plotting rescaled layers as maps. 
 
 theme_maps <- function(...) {
   
