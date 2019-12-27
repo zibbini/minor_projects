@@ -141,12 +141,15 @@ backlayer <- fortify(england)
 p_threshold <- ggplot() +
   geom_polygon(data = backlayer, aes(long, lat, group = group, fill = "Surrounding area")) +
   geom_polygon(data = avg_area, aes(long, lat, group = group, fill = "Suitable area")) +
+  
   labs(title = "Suitable climatic areas for ancient woodland:", 
        subtitle = "Thresholded at a mean distance of 0.1",
        caption = "Derived from the average of 17 rescaled bioclimatic layers. 
        Bioclimatic data sourced from WorldClim (Fick and Hijmans, 2017).") +
+  
   scale_fill_manual(values = c("Surrounding area" = "grey60", "Suitable area" = "darkred")) +
   guides(fill = guide_legend(title = "Legend")) +
+  
   north(x.min = min(backlayer$long), x.max = max(backlayer$long), 
         y.min = min(backlayer$lat), y.max = max(backlayer$lat),
         location = "topright", symbol = 10, scale = 0.1) +
