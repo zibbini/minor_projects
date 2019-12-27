@@ -50,7 +50,6 @@ make.vals <- function(vals, data, path) {
     }
 }
 
-
 make.vals(vals = data.frame(rcp2.6$`50`, rcp2.6$year), 
           data = dem, 
           path = "/home/z/Desktop/slr-files/rcp2.6/data/")
