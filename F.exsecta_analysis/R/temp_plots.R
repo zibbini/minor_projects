@@ -4,7 +4,7 @@ library(dplyr)
 library(gganimate)
 library(plotly)
 
-setwd("/run/media/z/Z/R-projects/GIS-work/minor-projects/F. exsecta analysis/Data")
+setwd("/path/to/F. exsecta analysis/Data")
 
 #----------------------------------------- Data prep ----------------------------------------------
 
@@ -65,7 +65,7 @@ basicplot <- ggplot(data = temp) +
   theme(legend.position = "top") 
 
 ggsave(filename = "basic.png", plot = basicplot,
-       path = "/run/media/z/Z/Linux files/Desktop/R projects/GIS-work/Project 1 - Nest proximity/Visualisations/")
+       path = "/path/to/Visualisations/")
 
 plot <- ggplot(data = means) +
   geom_line(aes(x = Time, y = meannest, col = "Nests")) +
@@ -83,7 +83,7 @@ plot +
   transition_reveal(Time)
 
 anim_save(filename = "mean1.gif", animation = last_animation(), 
-          path = "/run/media/z/Z/Linux files/Desktop/R projects/GIS-work/Project 1 - Nest proximity/Visualisations/")
+          path = "/path/to/Visualisations/")
 
 #For second observation period --------------------------------------------------------------------
 plot1 <- ggplot(data = means2) +
@@ -102,4 +102,4 @@ plot1 +
   transition_reveal(Time)
 
 anim_save(filename = "mean2.gif", animation = last_animation(), 
-          path = "/run/media/z/Z/Linux files/Desktop/R projects/GIS-work/Project 1 - Nest proximity/Visualisations/")
+          path = "/path/to/Visualisations/")

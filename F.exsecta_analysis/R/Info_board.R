@@ -7,7 +7,7 @@ library(DT)
 library(plyr)
 library(lubridate)
 
-setwd("/run/media/z/Z/R-projects/GIS-work/minor-projects/F. exsecta analysis/Data")
+setwd("/path/to/F. exsecta analysis/Data")
 
 #---------------------------------- Data prep -----------------------------------------
 

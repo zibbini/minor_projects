@@ -4,9 +4,9 @@ library(ggpmisc)
 library(lubridate)
 library(plyr)
 library(gridExtra)
-source("/home/z/Desktop/github /minor_projects/SLR_Plymouth/R/plot.save.R")
+source("/path/to/plot.save.R")
 
-setwd("~/Desktop/R-projects/GIS-work/minor-projects/F.exsecta_analysis/Data")
+setwd("/path/to/F.exsecta_analysis/Data")
 
 #--------------------------------- Data prep ------------------------------------
 
@@ -88,7 +88,7 @@ p4 <- ggplot(dfall, aes(x = maxtime)) +
 pall <- grid.arrange(p1, p2, p3, p4, ncol = 2, nrow = 2)
 
 plot.save(pall, width = 713, height = 630, 
-          filename = "dist_plots.png", path = "/home/z/Desktop/github /minor_projects/F.exsecta_analysis/Visualisations/")
+          filename = "dist_plots.png", path = "/path/to/F.exsecta_analysis/Visualisations/")
 
 #Normality tests for cor tests
 shapiro.test(dfall$diameter)
@@ -125,7 +125,7 @@ p7 <- ggplot(NestD, aes(x = Distance, y = diameter)) +
 pall2 <- grid.arrange(p6, p7, ncol = 2, nrow = 1)
 
 plot.save(pall2, width = 850, height = 500, filename = "nestdist_plots.png", 
-          path = "/home/z/Desktop/github /minor_projects/F.exsecta_analysis/Visualisations/")
+          path = "/path/to/F.exsecta_analysis/Visualisations/")
 
 plot.save(p5, width = 624, height = 487, filename = "nestdiam_plot.png", 
-          path = "/home/z/Desktop/github /minor_projects/F.exsecta_analysis/Visualisations/")
+          path = "/path/to/F.exsecta_analysis/Visualisations/")
