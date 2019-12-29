@@ -5,10 +5,10 @@ library(doParallel)
 
 #------------------------------------- Data prep ------------------------------------------
 
-dem           <- read_csv(file = "/home/z/Desktop/R-projects/GIS-work/minor-projects/ME_SLR/Data/lidar/DTM_plym/filtered2.csv")
+dem           <- read_csv(file = "path/to/filtered2.csv")
 colnames(dem) <- c("x","y","z")
 
-projdir       <- "/home/z/Desktop/R-projects/GIS-work/minor-projects/ME_SLR/Data/projections/"
+projdir       <- "path/to/projections/"
 projpaths     <- c(paste0(projdir, "rcp2.6.csv"), paste0(projdir, "rcp4.5.csv"), paste0(projdir, "rcp8.5.csv"))
 files         <- lapply(projpaths, read_csv)
 
@@ -52,13 +52,13 @@ make.vals <- function(vals, data, path) {
 
 make.vals(vals = data.frame(rcp2.6$`50`, rcp2.6$year), 
           data = dem, 
-          path = "/home/z/Desktop/slr-files/rcp2.6/data/")
+          path = "path/to/rcp2.6/data/")
 make.vals(vals = data.frame(rcp4.5$`50`, rcp4.5$year), 
           data = dem, 
-          path = "/home/z/Desktop/slr-files/rcp4.5/data/")
+          path = "path/to/rcp4.5/data/")
 make.vals(vals = data.frame(rcp8.5$`50`, rcp8.5$year), 
           data = dem, 
-          path = "/home/z/Desktop/slr-files/rcp8.5/data/")
+          path = "path/to/rcp8.5/data/")
 
 stopCluster(cl) 
 

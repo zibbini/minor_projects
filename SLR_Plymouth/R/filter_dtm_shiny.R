@@ -17,20 +17,20 @@ filter.raster <- function(file, inpath, outpath) {
 
 ncores <- detectCores() 
 
-mclapply(list.files(path = "~/Desktop/slr-files/rcp2.6/data/", pattern = ".rds"), 
+mclapply(list.files(path = "/path/to/rcp2.6/data/", pattern = ".rds"), 
          filter.raster, 
-         inpath = "~/Desktop/slr-files/rcp2.6/data/",
-         outpath = "~/Desktop/R-projects/GIS-work/minor-projects/ME_SLR/shine/Data/rcp2.6/",
+         inpath = "/path/to/rcp2.6/data/",
+         outpath = "/path/to/rcp2.6/",
          mc.cores = ncores - 1)
 
-mclapply(list.files(path = "~/Desktop/slr-files/rcp4.5/data/", pattern = ".rds"), 
+mclapply(list.files(path = "/path/to/rcp4.5/data/", pattern = ".rds"), 
          filter.raster, 
-         inpath = "~/Desktop/slr-files/rcp4.5/data/",
-         outpath = "~/Desktop/R-projects/GIS-work/minor-projects/ME_SLR/shine/Data/rcp4.5/",
+         inpath = "/path/to/rcp4.5/data/",
+         outpath = "/path/to/rcp4.5/",
          mc.cores = ncores - 1)
 
-mclapply(list.files(path = "~/Desktop/slr-files/rcp8.5/data/", pattern = ".rds"), 
+mclapply(list.files(path = "/path/torcp8.5/data/", pattern = ".rds"), 
          filter.raster, 
-         inpath = "~/Desktop/slr-files/rcp8.5/data/",
-         outpath = "~/Desktop/R-projects/GIS-work/minor-projects/ME_SLR/shine/Data/rcp8.5/",
+         inpath = "/path/to/data/",
+         outpath = "/path/to/rcp8.5/",
          mc.cores = ncores - 1)

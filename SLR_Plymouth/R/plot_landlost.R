@@ -1,7 +1,7 @@
 library(dplyr)
 library(parallel)
 library(ggplot2)
-source("/home/z/Desktop/github /minor_projects/SLR_Plymouth/R/plot.save.R")
+source("path/to/R/plot.save.R")
 
 #-------------------------------------- Data prep ------------------------------------------
 
@@ -16,20 +16,20 @@ quantify.landlost <- function(file, path) {
 
 ncores <- detectCores()
 
-rcp2.6 <- mclapply(list.files(path = "~/Desktop/slr-files/rcp2.6/data/", pattern = ".rds"),
+rcp2.6 <- mclapply(list.files(path = "path/to/rcp2.6/data/", pattern = ".rds"),
                    quantify.landlost, 
-                   path = "~/Desktop/slr-files/rcp2.6/data/", 
+                   path = "path/to/rcp2.6/data/", 
                    mc.cores = ncores - 1
                    )
-rcp4.5 <- mclapply(list.files(path = "~/Desktop/slr-files/rcp4.5/data/", pattern = ".rds"),
+rcp4.5 <- mclapply(list.files(path = "path/to/rcp4.5/data/", pattern = ".rds"),
                    quantify.landlost, 
-                   path = "~/Desktop/slr-files/rcp4.5/data/", 
+                   path = "path/to/rcp4.5/data/", 
                    mc.cores = ncores - 1
                    )
 
-rcp8.5 <- mclapply(list.files(path = "~/Desktop/slr-files/rcp8.5/data/", pattern = ".rds"),
+rcp8.5 <- mclapply(list.files(path = "path/to/rcp8.5/data/", pattern = ".rds"),
                    quantify.landlost, 
-                   path = "~/Desktop/slr-files/rcp8.5/data/", 
+                   path = "path/to/rcp8.5/data/", 
                    mc.cores = ncores - 1
                    )
 
@@ -52,5 +52,5 @@ p <- ggplot(landlost) +
   theme(legend.position = "bottom")
 
 plot.save(plot = p, width = 800, height = 600, filename = "landlost.png", 
-          path = "/home/z/Desktop/github /minor_projects/SLR_Plymouth/visualisations/")
+          path = "path/to/github /minor_projects/SLR_Plymouth/visualisations/")
   

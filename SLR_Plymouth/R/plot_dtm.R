@@ -1,12 +1,12 @@
 library(parallel)
 library(ggplot2)
 library(rgdal)
-source("/home/z/Desktop/github /minor_projects/SLR_Plymouth/R/plot.save.R")
+source("/path/to/github /minor_projects/SLR_Plymouth/R/plot.save.R")
 
 #------------------------------------- Data prep ---------------------------------------
 
 roads <- readOGR(
-  dsn = "/home/z/Desktop/R-projects/GIS-work/minor-projects/ME_SLR/Data/lidar/DTM_plym/",
+  dsn = "/path/to/DTM_plym/",
   layer = "roads"
 )
 roads <- fortify(roads)
@@ -49,22 +49,22 @@ make.plot <- function(inpath, file, outpath) {
 
 ncores <- detectCores()
 
-mclapply(list.files(path = "/home/z/Desktop/slr-files/rcp2.6/data/", pattern = ".rds"),
+mclapply(list.files(path = "/path/to/rcp2.6/data/", pattern = ".rds"),
          make.plot, 
-         inpath = "/home/z/Desktop/slr-files/rcp2.6/data/",
-         outpath = "/home/z/Desktop/slr-files/rcp2.6/visualisations/", 
+         inpath = "/path/to/rcp2.6/data/",
+         outpath = "/path/to/rcp2.6/visualisations/", 
          mc.cores = ncores - 1)
 
-mclapply(list.files(path = "/home/z/Desktop/slr-files/rcp4.5/data/", pattern = ".rds"),
+mclapply(list.files(path = "/path/to/rcp4.5/data/", pattern = ".rds"),
          make.plot, 
-         inpath = "/home/z/Desktop/slr-files/rcp4.5/data/",
-         outpath = "/home/z/Desktop/slr-files/rcp4.5/visualisations/", 
+         inpath = "/path/to/rcp4.5/data/",
+         outpath = "/path/to/rcp4.5/visualisations/", 
          mc.cores = ncores - 1)
 
-mclapply(list.files(path = "/home/z/Desktop/slr-files/rcp8.5/data/", pattern = ".rds"),
+mclapply(list.files(path = "/path/to/rcp8.5/data/", pattern = ".rds"),
          make.plot, 
-         inpath = "/home/z/Desktop/slr-files/rcp8.5/data/",
-         outpath = "/home/z/Desktop/slr-files/rcp8.5/visualisations/", 
+         inpath = "/path/to/rcp8.5/data/",
+         outpath = "/path/to/rcp8.5/visualisations/", 
          mc.cores = ncores - 1)
 
 
