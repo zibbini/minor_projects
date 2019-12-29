@@ -1,7 +1,7 @@
 library(ggplot2)
 library(gridExtra)
 
-setwd("/run/media/z/Z/Linux files/Desktop/GIS-work/Project_2/Data/")
+setwd("/path/to/Data/")
 
 #----------------------------------- Data prep ----------------------------------------
 

@@ -4,14 +4,14 @@ library(rgdal)
 library(parallel)
 library(doParallel)
 library(foreach)
-source("~/Desktop/github /minor_projects/ancient_woodland/R/fun/rescale.R")
-source("~/Desktop/github /minor_projects/ancient_woodland/R/fun/validate.R")
-source("~/Desktop/github /minor_projects/ancient_woodland/R/fun/plot.dist.R")
-source("~/Desktop/github /minor_projects/ancient_woodland/R/fun/plot.save.R")
-source("~/Desktop/github /minor_projects/ancient_woodland/R/fun/plot.maps.R")
+source("/path/to/github /minor_projects/ancient_woodland/R/fun/rescale.R")
+source("/path/to/github /minor_projects/ancient_woodland/R/fun/validate.R")
+source("/path/to/github /minor_projects/ancient_woodland/R/fun/plot.dist.R")
+source("/path/to/github /minor_projects/ancient_woodland/R/fun/plot.save.R")
+source("/path/to/github /minor_projects/ancient_woodland/R/fun/plot.maps.R")
 
 # ------------------------------------- Prep point data -------------------------------------
-values       <- read.csv(file = "~/Desktop/R-projects/GIS-work/Project_2/Data/temp_coords.csv", h = T)
+values       <- read.csv(file = "/path/to/Data/temp_coords.csv", h = T)
 sp           <- subset(values, select = c(X_COORD, Y_COORD))
 colnames(sp) <- c("x", "y")
 sp$x         <- as.numeric(sp$x)
@@ -22,7 +22,7 @@ sp           <- data.frame(x=pj$x, y=pj$y)
 
 # ------------------------------------- Rescale layers ---------------------------------------
 
-layers <- list.files(path = "~/Desktop/worldclim", pattern = ".tif" )
+layers <- list.files(path = "/path/to/worldclim", pattern = ".tif" )
 
 for (i in layers) {
   
@@ -31,13 +31,13 @@ for (i in layers) {
   rescale.mean(points = sp, 
                layer = data,
                export = TRUE, 
-               filename = paste0("~/Desktop/worldclim/mean_scaled/", gsub(".tif", ".rds", i))
+               filename = paste0("/path/to/worldclim/mean_scaled/", gsub(".tif", ".rds", i))
   )
 }
 
 # -------------------------------------- Plot maps -------------------------------------------
 
-files <- list.files(path= "~/Desktop/worldclim/mean_scaled/", pattern = ".rds")
+files <- list.files(path= "/path/to/worldclim/mean_scaled/", pattern = ".rds")
 vars <- "BIO1 = Annual Mean Temperature
 BIO2 = Mean Diurnal Range (Mean of monthly (max temp - min temp))
 BIO3 = Isothermality (BIO2/BIO7) (* 100)
@@ -66,28 +66,28 @@ registerDoParallel(cl)
 # For all layers 
 foreach (i = rds_with_labels[,1]) %dopar% {
   
-  data <- readRDS(paste0("~/Desktop/worldclim/mean_scaled/", i))
+  data <- readRDS(paste0("/path/to/worldclim/mean_scaled/", i))
   
   p <- plot.maps(data = data, fill = data$scaled, title = rds_with_labels[,2][i], subtitle = "", 
                  caption = "Bioclimatic data sourced from WorldClim (Fick and Hijmans, 2017).")
   
   plot.save(plot = p, width = 740, height = 720, 
             filename = gsub("-eng.rds", ".png", i), 
-            path = "~/Desktop/worldclim/maps")
+            path = "/path/to/worldclim/maps")
 }
 
 stopCluster(cl) 
 
 # For overall average 
 scales <- lapply(files, function(x) {
-  data <- readRDS(paste0("~/Desktop/worldclim/mean_scaled/", x))
+  data <- readRDS(paste0("/path/to/worldclim/mean_scaled/", x))
   scale <- data$scaled
 })
 
 data <- rbind.data.frame(scales)
 
 # Coordinates are the same across layers so only need one layer here
-xy   <- readRDS(paste0("~/Desktop/worldclim/mean_scaled/","01-eng.rds"))
+xy   <- readRDS(paste0("/path/to/worldclim/mean_scaled/","01-eng.rds"))
 xy$z <- rowMeans(data)
 
 xy$z <- scale(xy$z, 
@@ -102,7 +102,7 @@ avg <- plot.maps(data = xy, fill = xy$z,
 
 plot.save(plot = avg, width = 740, height = 720, 
           filename = "average.png", 
-          path = "~/Desktop/worldclim/maps/")
+          path = "/path/to/worldclim/maps/")
 
 # -------------------------------- Plot distribution plots ----------------------------------
 
@@ -114,13 +114,13 @@ registerDoParallel(cl)
 
 foreach (i = tif_with_labels[,1]) %dopar% {
   
-  layer <- raster::raster(paste0("~/Desktop/worldclim/", i))
+  layer <- raster::raster(paste0("/path/to/worldclim/", i))
   
   pd <- plot.dist(layer = layer, points = sp, xlab = tif_with_labels[,2][i])
   
   plot.save(plot = pd, width = 500, height = 500,
             filename = gsub("-eng.tif", ".png", i), 
-            path = "~/Desktop/worldclim/dist_plots/")
+            path = "/path/to/worldclim/dist_plots/")
 }
 
 stopCluster(cl)
@@ -131,7 +131,7 @@ avg_score <- validate(points = sp, data = xy, column = "z", threshold = 0.1, out
 avg_area  <- validate(points = sp, data = xy, column = "z", threshold = 0.1, output = "polygons")
 
 england <- readOGR(
-  dsn = "~/Desktop/worldclim/", 
+  dsn = "/path/to/worldclim/", 
   layer = "england"
 )
 
@@ -161,4 +161,4 @@ p_threshold <- ggplot() +
 
 plot.save(plot = p_threshold, width = 740, height = 720, 
           filename = "threshold.png", 
-          path = "~/Desktop/worldclim/maps/")
+          path = "/path/to/worldclim/maps/")

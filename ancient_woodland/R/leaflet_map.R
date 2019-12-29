@@ -3,12 +3,12 @@ library(rgdal)
 library(leaflet)
 library(htmltools)
 
-setwd("/run/media/z/Z/Linux files/Desktop/GIS-work/Project_2/Data/")
+setwd("/path/to/Data/")
 
 #---------------------------------- Data prep ---------------------------------------
 
 shp <- readOGR(
-  dsn = "/run/media/z/Z/Linux files/Desktop/GIS-work/Project_2/Data/",
+  dsn = "/path/to/Data/",
   layer = "site_count_districts"
 )
 

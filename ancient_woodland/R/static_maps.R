@@ -3,9 +3,9 @@ library(ggplot2)
 library(proj4)
 library(RColorBrewer)
 library(ggsn)
-source("~/Desktop/github /minor_projects/ancient_woodland/R/fun/plot.save.R")
+source("/path/to/fun/plot.save.R")
 
-setwd("~/Desktop/R-projects/GIS-work/Project_2/Data/")
+setwd("/path/to/Data/")
 
 #---------------------------------- Data prep ---------------------------------------
 
@@ -18,7 +18,7 @@ pj          <- proj4::project(df, proj4string, inverse = TRUE)
 df_latlon   <- data.frame(lat=pj$y, long=pj$x)
 
 shp <- readOGR(
-  dsn = "~/Desktop/R-projects/GIS-work/Project_2/Data/",
+  dsn = "/path/to/Data/",
   layer = "site_count_districts"
 )
 
@@ -73,7 +73,7 @@ p <- ggplot() +
 
 plot.save(plot = p, width = 740, height = 720, 
           filename = "hexbin.png",
-          path = "~/Desktop/github /minor_projects/ancient_woodland/visualisations/")
+          path = "/path/to/github /minor_projects/ancient_woodland/visualisations/")
 
 # Kernel density and isocontours ----------------------------------------------------------
 p1 <- ggplot(df_latlon) +
@@ -106,4 +106,4 @@ p1 <- ggplot(df_latlon) +
 
 plot.save(plot = p1, width = 740, height = 720, 
           filename = "kdensity.png",
-          path = "~/Desktop/github /minor_projects/ancient_woodland/visualisations/")
+          path = "/path/to/github /minor_projects/ancient_woodland/visualisations/")
