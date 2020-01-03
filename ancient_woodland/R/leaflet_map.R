@@ -35,11 +35,7 @@ labs <- sprintf(
 #--------------------------------- Final plot ---------------------------------------
 
 leaflet(shp) %>%
-  
-  addProviderTiles("MapBox", options = providerTileOptions(
-    id = "mapbox.light",
-    accessToken = Sys.getenv('MAPBOX_ACCESS_TOKEN'))) %>%
-  
+
   addPolygons(
     fillColor = ~pal(NUMPOINTS),
     weight = 2,
