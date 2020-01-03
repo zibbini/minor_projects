@@ -3,9 +3,9 @@ library(ggplot2)
 library(proj4)
 library(RColorBrewer)
 library(ggsn)
-source("/path/to/fun/plot.save.R")
+source("path/to/fun/plot.save.R")
 
-setwd("/path/to/Data/")
+setwd("path/to/Data")
 
 #---------------------------------- Data prep ---------------------------------------
 
@@ -18,7 +18,7 @@ pj          <- proj4::project(df, proj4string, inverse = TRUE)
 df_latlon   <- data.frame(lat=pj$y, long=pj$x)
 
 shp <- readOGR(
-  dsn = "/path/to/Data/",
+  dsn = "path/to/Data",
   layer = "site_count_districts"
 )
 
@@ -59,11 +59,10 @@ p <- ggplot() +
   
   north(df_latlon, location = "topright", symbol = 10, scale = 0.1) +
   scalebar(df_latlon, transform = T, model = "Airy", dist = 100, dist_unit = "km",
-           box.fill = c("black", "#FDFAE1"), location = "bottomright", st.size = 3) +
+           box.fill = c("black", "white"), location = "bottomright", st.size = 3) +
   
   theme_z_maps() +
-  labs(title = "Distribution of Ancient woodland in England", 
-       caption = "Data sourced from Natural England UK.") +
+  labs(caption = "Data sourced from Natural England UK.") +
   guides(linetype = guide_legend(
     title.theme = element_text(
       size = 12),
@@ -73,7 +72,7 @@ p <- ggplot() +
 
 plot.save(plot = p, width = 740, height = 720, 
           filename = "hexbin.png",
-          path = "/path/to/github /minor_projects/ancient_woodland/visualisations/")
+          path = "path/to/visualisations")
 
 # Kernel density and isocontours ----------------------------------------------------------
 p1 <- ggplot(df_latlon) +
@@ -90,13 +89,12 @@ p1 <- ggplot(df_latlon) +
   
   north(df_latlon, location = "topright", symbol = 10, scale = 0.1) +
   scalebar(df_latlon, transform = T, model = "Airy", dist = 100, dist_unit = "km",
-           box.fill = c("black", "#FDFAE1"), location = "bottomright", st.size = 3) +
+           box.fill = c("black", "white"), location = "bottomright", st.size = 3) +
   
   coord_fixed() +
   theme_z_maps() +
   xlim(-6, 2) + ylim(49.5, 56) +
-  labs(title = "Distribution of Ancient woodland in England",
-       caption = "Data sourced from Natural England UK.") +
+  labs(caption = "Data sourced from Natural England UK.") +
   guides(linetype = guide_legend(
     title.theme = element_text(
       size = 12),
@@ -106,4 +104,4 @@ p1 <- ggplot(df_latlon) +
 
 plot.save(plot = p1, width = 740, height = 720, 
           filename = "kdensity.png",
-          path = "/path/to/github /minor_projects/ancient_woodland/visualisations/")
+          path = "path/to/visualisations")
