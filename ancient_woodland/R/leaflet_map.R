@@ -44,7 +44,7 @@ leaflet(shp) %>%
     dashArray = "3",
     fillOpacity = 0.7,
     highlight = highlightOptions(
-      weight = 5,
+      weight = 2,
       color = "black",
       dashArray = "",
       fillOpacity = 0.7,

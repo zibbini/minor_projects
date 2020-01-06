@@ -4,13 +4,13 @@ library(ggpmisc)
 library(lubridate)
 library(plyr)
 library(gridExtra)
-source("/path/to/plot.save.R")
+source("path/to/plot.save.R")
 
-setwd("/path/to/F.exsecta_analysis/Data")
+setwd("/path/to/Data/")
 
 #--------------------------------- Data prep ------------------------------------
 
-NestD <- read.csv("nest_distance.csv", header = TRUE)
+NestD <- read.csv("Nests-NestDistance.csv", header = TRUE)
 dfall <- read.csv("data-all.csv", header = TRUE)
 
 #Filter and format 
@@ -104,12 +104,14 @@ cor.test(NestD$Distance, NestD$diameter, method = "pearson") #significant: weak 
 #Plots for above correlation tests
 p5 <- ggplot(dfall, aes(x = diameter, y = difftime)) + 
   geom_point() +
+  geom_smooth(method = "lm", color = "red") +
   theme_bw() +
   xlab("Nest diameter (cm)") +
-  ylab("Recorded time nest(s) produced brood (days)") 
+  ylab("Recorded time nest(s) produced brood (days)")
 
 p6 <- ggplot(NestD, aes(x = Distance, y = difftime)) +
   geom_point() +
+  geom_smooth(method = "lm", color = "red") +
   theme_bw() +
   xlab("Distance between nests (m)") +
   ylab("Recorded time nest(s) produced brood (days)") +
@@ -117,6 +119,7 @@ p6 <- ggplot(NestD, aes(x = Distance, y = difftime)) +
 
 p7 <- ggplot(NestD, aes(x = Distance, y = diameter)) +
   geom_point() +
+  geom_smooth(method = "lm", color = "red") +
   theme_bw() +
   xlab("Distance between nests (m)") +
   ylab("Nest diameter (cm)") +
