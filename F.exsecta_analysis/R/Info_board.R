@@ -3,12 +3,10 @@ library(leaflet)
 library(htmltools)
 library(proj4)
 library(sp)
-library(DT)
 library(plyr)
 library(lubridate)
 
 setwd("/path/to/F. exsecta analysis/Data")
-
 #---------------------------------- Data prep -----------------------------------------
 
 df <- read.csv("data-all.csv", header = TRUE)
@@ -91,19 +89,6 @@ bscols(widths = c(3,9),
              options = layersControlOptions(collapsed = FALSE)) %>%
            
            addLegend(pal = pal, values = ~diameter, opacity = 1, title = "Nest diameter (cm):",
-                     position = "bottomright"),
-         
-         datatable(dfmap,
-                   extensions = "Scroller",
-                   style = "bootstrap", 
-                   class = c("compact", "hover"), 
-                   width = "100%",
-                   options = list(
-                     deferRender = FALSE, 
-                     scrollY = 200, 
-                     scrollX = TRUE,
-                     scroller = TRUE,
-                     rownames = FALSE)
-         )
+                     position = "bottomright")
        )
 )
