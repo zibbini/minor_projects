@@ -68,7 +68,7 @@ bscols(widths = c(3,9),
        
        #Inputs =================
        list(
-         filter_select("cmpt", "Reserve location:", dfmap, ~compartment),
+         filter_select("cmpt", "Reserve compartment:", dfmap, ~compartment),
          filter_checkbox("activity", "Nest activity:", dfmap, ~ifelse(activity == "ACTIVE", "Active", "Inactive"),
                          inline = TRUE),
          filter_slider("cm", "Nest diameter (cm):", dfmap, ~diameter, width = "100%")
